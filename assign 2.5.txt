@@ -1,0 +1,48 @@
+1. cluster and what is a hadoop cluster
+
+
+a cluster is a group of servers and other resources that act like a single system that enables high availability,load balancing,parallel processing.
+
+
+Hadoop clusters are comprised of three different node types: master nodes, worker nodes, and client nodes
+*Master nodes stores data in the Hadoop Distributed File System (HDFS) and running parallel computations on that data using MapReduce.
+The NameNode coordinates the data storage function (with the HDFS), while the JobTracker oversees and coordinates the parallel processing of data using MapReduce. 
+
+*Worker nodes make up the majority of virtual machines and perform the job of storing the data and running computations.
+Each worker node runs both a DataNode and TaskTracker service that communicates with, and receives instructions from their master nodes. The TaskTracker service is subordinate to the JobTracker, and the DataNode service is subordinate to the NameNode.
+
+*Client nodes have Hadoop installed with all the cluster settings, but are neither master or worker nodes. Instead, the client node loads data into the cluster, 
+submits MapReduce jobs describing how that data should be processed, and then retrieves or views the results of the job when processing is finished
+
+
+
+
+
+
+
+
+
+
+==========================================================
+2.component of Hadoop 1.x
+
+*NAmeNode - It contains the hadoop filesystem tree and metadata information about files and
+            directories
+            It is a software that can be run on commodity hardware
+            The system having the namenode acts as the master server 
+
+*Secondary Namenode - performs house-keeping activities for namenode
+                      periodic merging of namespace and edits
+                      this is not a backup for Namenode
+
+*DataNode - stores actual data blocks of file in HDFS on its local disk
+            sends signals to NAmeNode periodically called heartbeat to verify if its active
+            they are the workhorse of the system
+
+*jobTracker - Job Tracker is used to assign MapReduce Tasks to Task Trackers in the Cluster of Nodes
+              Job Tracker maintains all the Task Trackers status like Up/running, Failed, Recovered etc.
+
+*TaskTracker - Task Tracker executes the Tasks which are assigned by Job Tracker
+                sends the status of those tasks to Job Tracker
+               Runs individual map-reduce jobs on datanodes
+                  
